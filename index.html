@@ -4,16 +4,20 @@
 	<meta charset="utf-8" content="text/html">
 	<link href="css/styles.css" type="text/css" rel="stylesheet">
 	<title>Evaluacion Final</title>
+	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-	<h1 align="center">Evaluacion Para El Curso De JavaScript Lo Esencial</h1>
+	<!--Encabezado o titulo de la pagina-->
+	<h1 align="center">Evaluación Para El Curso De JavaScript Lo Esencial</h1>
+	<!--Se crean los botones dentro de una tabla para mejor distribucion del espacio-->
 	<table align="center">
 		<tr>
-			<td><button>Mostrar Estudiantes</button></td>
+			<td><button onclick="mostrarEstudiantes()">Mostrar Estudiantes</button></td>
 			<td><button>Promedio Notas</button></td>
 			<td><button>Alumno con mejor nota</button></td>
 			<td><button>Alumno con menor nota</button></td>
 		</tr>
 	</table>
+	<p id="estudiantes"></p>
 </body>
 </html>

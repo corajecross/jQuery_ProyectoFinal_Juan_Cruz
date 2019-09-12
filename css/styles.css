@@ -1,0 +1,14 @@
+/*Estilo para todo el cuerpo de la pagina*/
+body{
+	background: rgba(0,0,0,0.9);
+	color:rgba(255,255,255,1);
+	font-family:Arial;
+}
+/*Estilo para los botones*/
+button{
+	background: #09B917;
+	color:rgba(255,255,255,1);
+	width:200px;
+	height:50px;
+	border-radius:5px;
+}
