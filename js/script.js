@@ -3,7 +3,7 @@ var estudiantes = [
 	{
 		"codigo":"A01",
 		"nombre":"Juan Perez",
-		"nota":4.8
+		"nota":4.2
 	},
 	{
 		"codigo":"A02",
@@ -33,7 +33,7 @@ var estudiantes = [
 	{
 		"codigo":"A07",
 		"nombre":"James Brown",
-		"nota":4.3
+		"nota":4.5
 	},
 	{
 		"codigo":"A08",
@@ -53,7 +53,7 @@ var estudiantes = [
 ]
 //Funcion para mostrar en pantalla todos los elementos en el JSON estudiantes
 function mostrarEstudiantes(){
-	var salida = "Listado Estudiantes - Nota<br>"; 	//Variable donde se almacena lo que debe mostrarse en pantalla
+	var salida = "Listado Estudiantes<br>"; 		//Variable donde se almacena lo que debe mostrarse en pantalla
 	var i;										 	//Contador para el for
 	for(i=0;i<estudiantes.length;i++){
 		salida += "Codigo: " + estudiantes[i].codigo + " - Nombre: " + estudiantes[i].nombre + " - Nota: " + estudiantes[i].nota + "<br>";
@@ -72,4 +72,34 @@ function promedioNotas(){
 	}
 	promedio = suma/contador;
 	document.getElementById('promedio').innerHTML = "El promedio de nota de los estudiantes es: " + promedio;
+}
+//Funcion para identificar que alumno tiene la mayor nota
+function notaMayor(){
+	var notaAlta = estudiantes[0]; 	//Variablde donde se almacena el arreglo del estudiante que tiene la nota mas alta
+	var i;							//Contador para el for
+	for(i=1;i<estudiantes.length;i++){
+		if((notaAlta.nota<estudiantes[i].nota)){
+			notaAlta = estudiantes[i];
+		}
+		document.getElementById('notaAlta').innerHTML = "El estudiante con la nota mas alta es: " + notaAlta.nombre;
+	}
+}
+//Funcion para identificar que alumno tiene la menor nota
+function notaMenor(){
+	var notaBaja = estudiantes[0];	//Variable donde se almacena el arreglo del estudiante con la nota mas baja
+	var i;							//Contador para el for
+	for(i=1;i<estudiantes.length;i++){
+		if(notaBaja.nota>estudiantes[i].nota){
+			notaBaja = estudiantes[i];
+		}
+		document.getElementById('notaBaja').innerHTML = "El estudiante con la nota mas baja es: " + notaBaja.nombre;
+	}
+}
+//Funcion para cambiar el color de los botones cuando el mouse esta encima
+function cambioColor(elemento){
+	elemento.style.background = "#7BF085";
+}
+//Funcion que cambia al color original cuando el mouse no esta encima del boton
+function colorOriginal(elemento){
+	elemento.style.background = "#09B917";
 }

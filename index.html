@@ -12,13 +12,17 @@
 	<!--Se crean los botones dentro de una tabla para mejor distribucion del espacio-->
 	<table align="center">
 		<tr>
-			<td><button onclick="mostrarEstudiantes()">Mostrar Estudiantes</button></td>
-			<td><button onclick="promedioNotas()">Promedio Notas</button></td>
-			<td><button>Alumno con mejor nota</button></td>
-			<td><button>Alumno con menor nota</button></td>
+			<td><button onclick="mostrarEstudiantes()" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Mostrar Estudiantes</button></td>
+			<td><button onclick="promedioNotas()" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Promedio Notas</button></td>
+			<td><button onclick="notaMayor()" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Alumno Con Mejor Nota</button></td>
+			<td><button onclick="notaMenor()" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Alumno Con Peor Nota</button></td>
 		</tr>
 	</table>
-	<p id="estudiantes"></p>
-	<p id="promedio"></p>
+	<div align="center">
+		<p id="estudiantes"></p>		
+		<p id="promedio"></p>
+		<p id="notaAlta"></p>
+		<p id="notaBaja"></p>
+	</div>
 </body>
 </html>
