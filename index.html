@@ -4,25 +4,44 @@
 	<meta charset="utf-8" content="text/html">
 	<link href="css/styles.css" type="text/css" rel="stylesheet">
 	<title>Evaluacion Final</title>
-	<script type="text/javascript" src="js/script.js"></script>
+	
 </head>
 <body>
 	<!--Encabezado o titulo de la pagina-->
-	<h1 align="center">Evaluación Para El Curso De JavaScript Lo Esencial</h1>
+	<h1 align="center">Evaluación Para El Curso De El DOM Y El BOM</h1>
+	<!--Primera seccion de registro de los estudiantes-->
+	<div id="formulario" align="center">
+		<h2>Registro Estudiante</h2>
+		<label for="codigo">Codigo:</label>
+		<input type="text" name="codigo" id="codigo">
+		<br><br>
+		<label for="nombre">Nombre:</label>
+		<input type="text" name="nombre" id="nombre">
+		<br><br>
+		<label for="nota">Nota:</label>
+		<input type="text" name="nota" id="nota">
+		<br><br>
+	</div>
 	<!--Se crean los botones dentro de una tabla para mejor distribucion del espacio-->
 	<table align="center">
 		<tr>
-			<td><button onclick="mostrarEstudiantes()" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Mostrar Estudiantes</button></td>
-			<td><button onclick="promedioNotas()" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Promedio Notas</button></td>
-			<td><button onclick="notaMayor()" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Alumno Con Mejor Nota</button></td>
-			<td><button onclick="notaMenor()" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Alumno Con Peor Nota</button></td>
+			<td><button id="btnRegistro" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Registrar Estudiante</button></td>
+			<td><button id="btnPromedio" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Mostrar Promedio</button></td>
+			<td><button id="btnNotaMayor" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Mostrar Nota Mayor</button></td>
+			<td><button id="btnNotaMenor" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Mostrar Nota Menor</button></td>
 		</tr>
 	</table>
+	<!--Division para la tabla de estudiantes registrados-->
 	<div align="center">
-		<p id="estudiantes"></p>		
-		<p id="promedio"></p>
-		<p id="notaAlta"></p>
-		<p id="notaBaja"></p>
+		<h2>Listado De Estudiantes</h2>
+		<table id="tablaEstudiantes" align="center">
+			<thead>
+				<td><b>Codigo</b></td>
+				<td><b>Nombre</b></td>
+				<td><b>Nota</b></td>
+			</thead>
+		</table>
 	</div>
 </body>
+<script type="text/javascript" src="js/script.js"></script>
 </html>
