@@ -6,24 +6,30 @@ function registrarEstudiante(){
 	var codigoEstudiante = String(document.getElementById('codigo').value);
 	var nombreEstudiante = String(document.getElementById('nombre').value);
 	var notaEstudiante = parseFloat(document.getElementById('nota').value);
-	//Se añaden al final del arreglo estudiantes
-	estudiantes.push(
-		{
-			"codigo":codigoEstudiante,
-			"nombre":nombreEstudiante,
-			"nota":notaEstudiante
-		}
-	);
-	
-	var tabla = document.getElementById('tablaEstudiantes');
-	var nuevofila = tabla.insertRow(-1);
-	var celdaCodigo = nuevofila.insertCell(0);
-	var celdaNombre = nuevofila.insertCell(1);
-	var celdaNota= nuevofila.insertCell(2);
-	
-	celdaCodigo.innerHTML = codigoEstudiante;
-	celdaNombre.innerHTML = nombreEstudiante;
-	celdaNota.innerHTML = notaEstudiante;
+	if(isNaN(notaEstudiante)){
+		alert("Por favor digite una nota valida");
+	} else{
+		//Se añaden al final del arreglo estudiantes
+		estudiantes.push(
+			{
+				"codigo":codigoEstudiante,
+				"nombre":nombreEstudiante,
+				"nota":notaEstudiante
+			}
+		);
+		//Se guarda en una variable la tabla donde se van a imprimir los estudiantes con sus datos
+		var tabla = document.getElementById('tablaEstudiantes');
+		//Se crea una nueva fila para la tabla
+		var nuevofila = tabla.insertRow(-1);
+		//Se crean las celdas para ingresar los datos del estudiante
+		var celdaCodigo = nuevofila.insertCell(0);
+		var celdaNombre = nuevofila.insertCell(1);
+		var celdaNota= nuevofila.insertCell(2);
+		//Se ingresan los datos del estudiante en la tabla
+		celdaCodigo.innerHTML = codigoEstudiante;
+		celdaNombre.innerHTML = nombreEstudiante;
+		celdaNota.innerHTML = notaEstudiante;	
+	}
 }
 //Funcion que realiza el promedio de notas de los estudiantes en el JSON e imprime el resultado en pantalla
 function promedioNotas(){
