@@ -29,6 +29,11 @@ function registrarEstudiante(){
 		celdaCodigo.innerHTML = codigoEstudiante;
 		celdaNombre.innerHTML = nombreEstudiante;
 		celdaNota.innerHTML = notaEstudiante;	
+		
+		var inputs = document.getElementsByTagName('input');
+		for(var i=0; i<inputs.length; i++){
+			inputs[i].value = "";
+		}
 	}
 }
 //Funcion que realiza el promedio de notas de los estudiantes en el JSON e imprime el resultado en pantalla

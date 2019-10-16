@@ -16,7 +16,7 @@ button{
 #tablaEstudiantes{
 	width: 820px;	
 } 
-
+/*Estilo para el div que contiene el formulario de registro del estudiante*/
 #formulario{
 	margin: 0 auto;
 	background: #09B917;
@@ -26,7 +26,7 @@ button{
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
-
+/*Estilo para los encabezados de las tablas de la aplicacion*/
 .encabezadoTabla{
 	font-size: 25px;
 	font-style: oblique;
