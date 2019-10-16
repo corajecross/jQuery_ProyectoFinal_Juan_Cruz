@@ -9,31 +9,44 @@ function registrarEstudiante(){
 	if(isNaN(notaEstudiante)){
 		alert("Por favor digite una nota valida");
 	} else{
-		//Se añaden al final del arreglo estudiantes
-		estudiantes.push(
-			{
-				"codigo":codigoEstudiante,
-				"nombre":nombreEstudiante,
-				"nota":notaEstudiante
-			}
-		);
-		//Se guarda en una variable la tabla donde se van a imprimir los estudiantes con sus datos
-		var tabla = document.getElementById('tablaEstudiantes');
-		//Se crea una nueva fila para la tabla
-		var nuevofila = tabla.insertRow(-1);
-		//Se crean las celdas para ingresar los datos del estudiante
-		var celdaCodigo = nuevofila.insertCell(0);
-		var celdaNombre = nuevofila.insertCell(1);
-		var celdaNota= nuevofila.insertCell(2);
-		//Se ingresan los datos del estudiante en la tabla
-		celdaCodigo.innerHTML = codigoEstudiante;
-		celdaNombre.innerHTML = nombreEstudiante;
-		celdaNota.innerHTML = notaEstudiante;	
-		
-		var inputs = document.getElementsByTagName('input');
-		for(var i=0; i<inputs.length; i++){
-			inputs[i].value = "";
+		if(confirm("Seguro que desea registrar el estudiante?")==true){
+			//Se añaden al final del arreglo estudiantes
+			estudiantes.push(
+				{
+					"codigo":codigoEstudiante,
+					"nombre":nombreEstudiante,
+					"nota":notaEstudiante
+				}
+			);
+			imprimirEstudiante(codigoEstudiante,nombreEstudiante,notaEstudiante);
+			borrarDatos();
+		} else{
+			borrarDatos();
 		}
+	}
+}
+//Funcion para imprimir en la tabla los estudiantes registrados
+function imprimirEstudiante(cod,nom,not){
+	'use strict';
+	//Se guarda en una variable la tabla donde se van a imprimir los estudiantes con sus datos
+	var tabla = document.getElementById('tablaEstudiantes');
+	//Se crea una nueva fila para la tabla
+	var nuevofila = tabla.insertRow(-1);
+	//Se crean las celdas para ingresar los datos del estudiante
+	var celdaCodigo = nuevofila.insertCell(0);
+	var celdaNombre = nuevofila.insertCell(1);
+	var celdaNota= nuevofila.insertCell(2);
+	//Se ingresan los datos del estudiante en la tabla
+	celdaCodigo.innerHTML = cod;
+	celdaNombre.innerHTML = nom;
+	celdaNota.innerHTML = not;	
+}
+//Funcion para borrar los datos digitados en los inputs de registro
+function borrarDatos(){
+	'use strict';
+	var inputs = document.getElementsByTagName('input');
+	for(var i=0; i<inputs.length; i++){
+			inputs[i].value = "";
 	}
 }
 //Funcion que realiza el promedio de notas de los estudiantes en el JSON e imprime el resultado en pantalla
