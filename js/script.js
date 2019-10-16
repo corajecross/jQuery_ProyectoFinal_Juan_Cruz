@@ -61,7 +61,7 @@ function promedioNotas(){
 		contador ++;
 	}
 	promedio = suma/contador;
-	alert("El promedio de nota de los estudiantes es: " + promedio);
+	alert("El promedio de nota de los estudiantes es: " + promedio.toPrecision(3));
 }
 //Funcion para identificar que alumno tiene la mayor nota
 function notaMayor(){
