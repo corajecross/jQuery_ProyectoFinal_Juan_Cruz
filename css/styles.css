@@ -8,14 +8,27 @@ body{
 button{
 	background: #09B917;
 	color:rgba(255,255,255,1);
-	width:200px;
+	width:198px;
 	height:50px;
 	border-radius:5px;
 }
 /*Estilo para la tabla donde se registran los estudiantes*/
 #tablaEstudiantes{
-	border: 2px solid rgba(0,0,0,1.0);
-	border-collapse: collapse;
-	width: 40%;
-	
+	width: 820px;	
+} 
+
+#formulario{
+	margin: 0 auto;
+	background: #09B917;
+	padding: 10px 0px 20px 0px;
+	width: 820px;
+	border: 1px solid rgba(255,255,255,0.9);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.encabezadoTabla{
+	font-size: 25px;
+	font-style: oblique;
+	font-weight: bold;
 }

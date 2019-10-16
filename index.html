@@ -11,19 +11,27 @@
 	<h1 align="center">Evaluación Para El Curso De El DOM Y El BOM</h1>
 	<!--Primera seccion de registro de los estudiantes-->
 	<div id="formulario" align="center">
-		<h2>Registro Estudiante</h2>
-		<label for="codigo">Codigo:</label>
-		<input type="text" name="codigo" id="codigo">
-		<br><br>
-		<label for="nombre">Nombre:</label>
-		<input type="text" name="nombre" id="nombre">
-		<br><br>
-		<label for="nota">Nota:</label>
-		<input type="text" name="nota" id="nota">
-		<br><br>
+		<!--Se realiza el formulario dentro de una tabla para mejor distribucion del espacio del formulario-->
+		<table border="1">
+			<thead>
+				<td colspan="2" align="center" class="encabezadoTabla">Registro Estudiante</td>
+			</thead>
+			<tr>
+				<td><label for="codigo">Codigo:</label></td>
+				<td><input type="text" name="codigo" id="codigo"></td>
+			</tr>
+			<tr>
+				<td><label for="nombre">Nombre:</label></td>
+				<td><input type="text" name="nombre" id="nombre"></td>
+			</tr>
+			<tr>
+				<td><label for="nota">Nota:</label></td>
+				<td><input type="text" name="nota" id="nota"></td>
+			</tr>
+		</table>
 	</div>
 	<!--Se crean los botones dentro de una tabla para mejor distribucion del espacio-->
-	<table align="center">
+	<table align="center" border="1">
 		<tr>
 			<td><button id="btnRegistro" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Registrar Estudiante</button></td>
 			<td><button id="btnPromedio" onmouseover="cambioColor(this)" onmouseout="colorOriginal(this)">Mostrar Promedio</button></td>
@@ -33,13 +41,15 @@
 	</table>
 	<!--Division para la tabla de estudiantes registrados-->
 	<div align="center">
-		<h2>Listado De Estudiantes</h2>
-		<table id="tablaEstudiantes" align="center">
+		<table id="tablaEstudiantes" align="center" border="1">
 			<thead>
+				<td colspan="3" align="center" class="encabezadoTabla">Listado De Estudiantes</td>
+			</thead>
+			<tr>
 				<td><b>Codigo</b></td>
 				<td><b>Nombre</b></td>
 				<td><b>Nota</b></td>
-			</thead>
+			</tr>
 		</table>
 	</div>
 </body>
