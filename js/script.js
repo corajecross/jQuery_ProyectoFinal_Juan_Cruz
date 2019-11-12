@@ -1,5 +1,36 @@
+//Funcion para mostrar en pantalla los estudiantes almacenados en el localStorage
+function imprimirEstudiantes(){
+	'use strict';
+	var tabla = "";
+	var contTabla = $("#contEstudiantes");
+	//Construccion de la tabla
+	tabla += '<table id="tablaEstudiantes" align="center" border="1">';
+	tabla += '<thead><td colspan="5" align="center" class="encabezadoTabla">Listado De Estudiantes</td></thead>';
+	tabla += '<tr>';
+	tabla += '<td><b>Codigo</b></td>';
+	tabla += '<td><b>Nombre</b></td>';
+	tabla += '<td><b>Nota</b></td>';
+	tabla += '<td><b>Editar</b></td>';
+	tabla += '<td><b>Eliminar</b></td>';
+	tabla += '</tr>';
+	for(var i=0; i<localStorage.length; i++){
+		var clave = localStorage.key(i);
+		var estudiante = $.parseJSON(localStorage.getItem(clave));
+		tabla += '<tr>';
+		tabla += '<td>' + estudiante.codigo + '</td>';
+		tabla += '<td>' + estudiante.nombre + '</td>';
+		tabla += '<td>' + estudiante.nota + '</td>';
+		tabla += '<td align="center"><button onclick="editarEstudiante(\''+estudiante.codigo+'\')">Editar</button></td>';
+		tabla += '<td align="center"><button onclick="eliminarEstudiante(\''+estudiante.codigo+'\')">Eliminar</button></td>';
+		tabla += '</tr>';
+	}
+	tabla += '</table>';
+	$(contTabla).html(tabla);
+}
+//jQuery
 $(document).ready(function(){
 	'use strict';
+	imprimirEstudiantes();
 	//Funcion para registrar un estudiante que se activa al darle click al boton con id btnRegistro
 	$("#btnRegistro").click(function(){
 		//Se capturan los datos ingresados en el formulario
@@ -9,14 +40,20 @@ $(document).ready(function(){
 		//Se valida si la nota ingresada es numerica
 		if($.isNumeric(nota)==false){
 			alert("Por favor ingrese una nota valida");
+			$("#nota").val("");
 		} else{
-			var estudiante = {
+			if(confirm("Esta seguro que desea registrar el estudiante?")==true){
+				var estudiante = {
 				codigo: codigo,
 				nombre: nombre,
 				nota: nota
-			};
-			localStorage.setItem(codigo,JSON.stringify(estudiante));
-			imprimirEstudiantes();
+				};
+				localStorage.setItem(codigo,JSON.stringify(estudiante));
+				imprimirEstudiantes();
+				borrarDatos();
+			}else{
+				borrarDatos();
+			}
 		}
 	});
 	//Funcion para calcular y mostrar el promedio de notas de los estudiantes registrados que se activa al darle click al boton con id btnPromedio
@@ -70,7 +107,7 @@ $(document).ready(function(){
 				var estudiante = $.parseJSON(localStorage.getItem(clave));
 				var notaEstudiante = parseFloat(estudiante.nota);
 				var nombreEstudiante = estudiante.nombre;
-				if(nombreEstudiante<notaBaja){
+				if(notaEstudiante<notaBaja){
 					notaBaja = notaEstudiante;
 					estudianteBaja = nombreEstudiante;
 				}
@@ -78,31 +115,13 @@ $(document).ready(function(){
 			alert("El estudiante con la nota mas baja es: " + estudianteBaja + ", con " + notaBaja);
 		}
 	});
-});
-//Funcion para imprimir en la tabla los estudiantes registrados
-function imprimirEstudiantes(cod,nom,not){
-	'use strict';
-	//Se guarda en una variable la tabla donde se van a imprimir los estudiantes con sus datos
-	var tabla = document.getElementById('tablaEstudiantes');
-	//Se crea una nueva fila para la tabla
-	var nuevofila = tabla.insertRow(-1);
-	//Se crean las celdas para ingresar los datos del estudiante
-	var celdaCodigo = nuevofila.insertCell(0);
-	var celdaNombre = nuevofila.insertCell(1);
-	var celdaNota= nuevofila.insertCell(2);
-	//Se ingresan los datos del estudiante en la tabla
-	celdaCodigo.innerHTML = cod;
-	celdaNombre.innerHTML = nom;
-	celdaNota.innerHTML = not;	
-}
-//Funcion para borrar los datos digitados en los inputs de registro
-function borrarDatos(){
-	'use strict';
-	var inputs = document.getElementsByTagName('input');
-	for(var i=0; i<inputs.length; i++){
-			inputs[i].value = "";
+	//Funcion para borrar los datos digitados en los inputs de registro
+	function borrarDatos(){
+		$("#codigo").val("");
+		$("#nombre").val("");
+		$("#nota").val("");
 	}
-}
+});
 //Funcion para cambiar el color de los botones cuando el mouse esta encima
 function cambioColor(elemento){
 	'use strict';
@@ -113,8 +132,3 @@ function colorOriginal(elemento){
 	'use strict';
 	elemento.style.background = "#09B917";
 }
-
-document.getElementById('btnRegistro').addEventListener("click", registrarEstudiante);
-document.getElementById('btnPromedio').addEventListener("click", promedioNotas);
-document.getElementById('btnNotaMayor').addEventListener("click", notaMayor);
-document.getElementById('btnNotaMenor').addEventListener("click", notaMenor);
