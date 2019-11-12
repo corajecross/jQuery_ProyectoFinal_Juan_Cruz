@@ -19,6 +19,20 @@ $(document).ready(function(){
 			imprimirEstudiantes();
 		}
 	});
+	//Funcion para calcular y mostrar el promedio de notas de los estudiantes registrados que se activa al darle click al boton con id btnPromedio
+	$("#btnPromedio").click(function(){
+		var suma = 0;		//Variable donde se almacena la suma de las notas de todos los alumnos
+		var contador = 0;	//Variable donde se almacenan la cantidad de alumnos
+		var promedio;		//Variable donde se almacena el promedio de notas de los alumnos
+		for(var i=0; i<localStorage.length; i++){
+			var clave = localStorage.key(i);
+			var estudiante = $.parseJSON(localStorage.getItem(clave));
+			suma += parseFloat(estudiante.nota);
+			contador ++;
+		}
+		promedio = suma/contador;
+		alert("El promedio de nota de los estudiantes es: " + promedio.toPrecision(3));
+	});
 });
 //Funcion para imprimir en la tabla los estudiantes registrados
 function imprimirEstudiantes(cod,nom,not){
@@ -43,20 +57,6 @@ function borrarDatos(){
 	for(var i=0; i<inputs.length; i++){
 			inputs[i].value = "";
 	}
-}
-//Funcion que realiza el promedio de notas de los estudiantes en el JSON e imprime el resultado en pantalla
-function promedioNotas(){
-	'use strict';
-	var suma = 0;		//Variable donde se almacena la suma de las notas de todos los alumnos
-	var contador = 0;	//Variable donde se almacenan la cantidad de alumnos
-	var promedio;		//Variable donde se almacena el promedio de notas de los alumnos
-	var i;				//Contador para el for
-	for(i=0;i<estudiantes.length;i++){
-		suma += estudiantes[i].nota;
-		contador ++;
-	}
-	promedio = suma/contador;
-	alert("El promedio de nota de los estudiantes es: " + promedio.toPrecision(3));
 }
 //Funcion para identificar que alumno tiene la mayor nota
 function notaMayor(){
