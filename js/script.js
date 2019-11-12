@@ -1,32 +1,27 @@
-var estudiantes = [];
-//Funcion para Registrar estudiantes
-function registrarEstudiante(){
+$(document).ready(function(){
 	'use strict';
-	//Se capturan los datos ingresados en el formulario
-	var codigoEstudiante = String(document.getElementById('codigo').value);
-	var nombreEstudiante = String(document.getElementById('nombre').value);
-	var notaEstudiante = parseFloat(document.getElementById('nota').value);
-	if(isNaN(notaEstudiante)){
-		alert("Por favor digite una nota valida");
-	} else{
-		if(confirm("Seguro que desea registrar el estudiante?")==true){
-			//Se añaden al final del arreglo estudiantes
-			estudiantes.push(
-				{
-					"codigo":codigoEstudiante,
-					"nombre":nombreEstudiante,
-					"nota":notaEstudiante
-				}
-			);
-			imprimirEstudiante(codigoEstudiante,nombreEstudiante,notaEstudiante);
-			borrarDatos();
+	//Funcion para registrar un estudiante que se activa al darle click al boton con id btnRegistro
+	$("#btnRegistro").click(function(){
+		//Se capturan los datos ingresados en el formulario
+		var codigo = $("#codigo").val();
+		var nombre = $("#nombre").val();
+		var nota = parseFloat($("#nota").val());
+		//Se valida si la nota ingresada es numerica
+		if($.isNumeric(nota)==false){
+			alert("Por favor ingrese una nota valida");
 		} else{
-			borrarDatos();
+			var estudiante = {
+				codigo: codigo,
+				nombre: nombre,
+				nota: nota
+			};
+			localStorage.setItem(codigo,JSON.stringify(estudiante));
+			imprimirEstudiantes();
 		}
-	}
-}
+	});
+});
 //Funcion para imprimir en la tabla los estudiantes registrados
-function imprimirEstudiante(cod,nom,not){
+function imprimirEstudiantes(cod,nom,not){
 	'use strict';
 	//Se guarda en una variable la tabla donde se van a imprimir los estudiantes con sus datos
 	var tabla = document.getElementById('tablaEstudiantes');
