@@ -24,14 +24,59 @@ $(document).ready(function(){
 		var suma = 0;		//Variable donde se almacena la suma de las notas de todos los alumnos
 		var contador = 0;	//Variable donde se almacenan la cantidad de alumnos
 		var promedio;		//Variable donde se almacena el promedio de notas de los alumnos
-		for(var i=0; i<localStorage.length; i++){
-			var clave = localStorage.key(i);
-			var estudiante = $.parseJSON(localStorage.getItem(clave));
-			suma += parseFloat(estudiante.nota);
-			contador ++;
+		//Verifica si hay estudianes registrados
+		if(localStorage.length == 0){
+			alert("No hay estudiantes registrados");
+		}else{
+			for(var i=0; i<localStorage.length; i++){
+				var clave = localStorage.key(i);
+				var estudiante = $.parseJSON(localStorage.getItem(clave));
+				suma += parseFloat(estudiante.nota);
+				contador ++;
+			}
+			promedio = suma/contador;
+			alert("El promedio de nota de los estudiantes es: " + promedio.toPrecision(3));
 		}
-		promedio = suma/contador;
-		alert("El promedio de nota de los estudiantes es: " + promedio.toPrecision(3));
+	});
+	//Funcion que identifica la nota mayor que se activa al hacer click en el boton con id btnNotaMayor
+	$("#btnNotaMayor").click(function(){
+		var notaAlta = 0;
+		var estudianteAlta;
+		if(localStorage.length == 0){
+			alert("No hay estudiantes registrados");
+		}else{
+			for(var i=0; i<localStorage.length; i++){
+				var clave = localStorage.key(i);
+				var estudiante = $.parseJSON(localStorage.getItem(clave));
+				var notaEstudiante = parseFloat(estudiante.nota);
+				var nombreEstudiante = estudiante.nombre;
+				if(notaEstudiante>notaAlta){
+					notaAlta = notaEstudiante;
+					estudianteAlta = nombreEstudiante;
+				}
+			}
+			alert("El estudiante con la nota mas alta es: " + estudianteAlta + ", con " + notaAlta);
+		}
+	});
+	//Funcion que identifica la nota menor que se activa al hacer click en el boton con id btnNotaMenor
+	$("#btnNotaMenor").click(function(){
+		var notaBaja = 0;
+		var estudianteBaja;
+		if(localStorage.length == 0){
+			alert("No hay estudiantes registrados");
+		}else{
+			for(var i=0; i<localStorage.length; i++){
+				var clave = localStorage.key(i);
+				var estudiante = $.parseJSON(localStorage.getItem(clave));
+				var notaEstudiante = parseFloat(estudiante.nota);
+				var nombreEstudiante = estudiante.nombre;
+				if(nombreEstudiante<notaBaja){
+					notaBaja = notaEstudiante;
+					estudianteBaja = nombreEstudiante;
+				}
+			}
+			alert("El estudiante con la nota mas baja es: " + estudianteBaja + ", con " + notaBaja);
+		}
 	});
 });
 //Funcion para imprimir en la tabla los estudiantes registrados
@@ -58,30 +103,6 @@ function borrarDatos(){
 			inputs[i].value = "";
 	}
 }
-//Funcion para identificar que alumno tiene la mayor nota
-function notaMayor(){
-	'use strict';
-	var notaAlta = estudiantes[0]; 	//Variablde donde se almacena el arreglo del estudiante que tiene la nota mas alta
-	var i;							//Contador para el for
-	for(i=1;i<estudiantes.length;i++){
-		if((notaAlta.nota<estudiantes[i].nota)){
-			notaAlta = estudiantes[i];
-		}		
-	}
-	alert("El estudiante con la nota mas alta es: " + notaAlta.nombre + ", con " + notaAlta.nota);
-}
-//Funcion para identificar que alumno tiene la menor nota
-function notaMenor(){
-	'use strict';
-	var notaBaja = estudiantes[0];	//Variable donde se almacena el arreglo del estudiante con la nota mas baja
-	var i;							//Contador para el for
-	for(i=1;i<estudiantes.length;i++){
-		if(notaBaja.nota>estudiantes[i].nota){
-			notaBaja = estudiantes[i];
-		}		
-	}
-	alert("El estudiante con la nota mas baja es: " + notaBaja.nombre + ", con " + notaBaja.nota);
-} 
 //Funcion para cambiar el color de los botones cuando el mouse esta encima
 function cambioColor(elemento){
 	'use strict';
