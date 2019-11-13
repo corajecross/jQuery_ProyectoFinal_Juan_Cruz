@@ -59,9 +59,15 @@ $(document).ready(function(){
 		var nota = parseFloat($("#nota").val());
 		//Se valida si la nota ingresada es numerica
 		if($.isNumeric(nota)==false){
-			alert("Por favor ingrese una nota valida");
+			alert("Por favor ingrese una nota numerica");
 			$("#nota").val("");
-		} else{
+		}
+		//Se valida que la nota ingresada este dentro de un rango entre 0 y 5
+		else if(nota<0 || nota>5){							
+			alert("Por favor digite una nota entre 0 y 5");
+			$("#nota").val("");
+		} 
+		else{
 			if(confirm("Esta seguro que desea registrar el estudiante?")==true){
 				var estudiante = {
 				codigo: codigo,
@@ -150,13 +156,4 @@ $(document).ready(function(){
 		$("#nota").val("");
 	}
 });
-//Funcion para cambiar el color de los botones cuando el mouse esta encima
-/*function cambioColor(elemento){
-	'use strict';
-	elemento.style.background = "#7BF085";
-}
-//Funcion que cambia al color original cuando el mouse no esta encima del boton
-function colorOriginal(elemento){
-	'use strict';
-	elemento.style.background = "#09B917";
-}*/
+
