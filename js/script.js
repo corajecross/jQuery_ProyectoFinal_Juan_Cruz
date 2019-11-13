@@ -13,6 +13,7 @@ function imprimirEstudiantes(){
 	tabla += '<td align="center"><b>Editar</b></td>';
 	tabla += '<td align="center"><b>Eliminar</b></td>';
 	tabla += '</tr>';
+	//Se recorren los datos almacenados localmente para imprmirlos en pantalla
 	for(var i=0; i<localStorage.length; i++){
 		var clave = localStorage.key(i);
 		var estudiante = $.parseJSON(localStorage.getItem(clave));
@@ -26,6 +27,25 @@ function imprimirEstudiantes(){
 	}
 	tabla += '</table>';
 	$(contTabla).html(tabla);
+}
+//Funcion para editar un alumno que se activa al hacer click en el boton editar
+function editarEstudiante(codigo){
+	'use strict';
+	var estudiante;
+	for(var i=0; i<localStorage.length; i++){
+		var clave = localStorage.key(i);
+		if(codigo == clave){
+			estudiante = $.parseJSON(localStorage.getItem(clave));
+			$("#codigo").val(estudiante.codigo);
+			$("#nombre").val(estudiante.nombre);
+			$("#nota").val(estudiante.nota);
+		}
+	}
+}
+//Funcion para eliminar un estudiante del almacenamiento local
+function eliminarEstudiante(codigo){
+	localStorage.removeItem(codigo);
+	imprimirEstudiantes();
 }
 //jQuery
 $(document).ready(function(){
@@ -115,6 +135,14 @@ $(document).ready(function(){
 			alert("El estudiante con la nota mas baja es: " + estudianteBaja + ", con " + notaBaja);
 		}
 	});
+	//Funcion que cambia de color cuando el cursor se encuentra encima de un boton
+	$("button").mouseenter(function(){
+		$(this).css("background","#7BF085");
+	});
+	//Funcion que devuelve al color original un boton cuando el cursor ya no esta encima de el
+	$("button").mouseleave(function(){
+		$(this).css("background","#09B917");
+	});
 	//Funcion para borrar los datos digitados en los inputs de registro
 	function borrarDatos(){
 		$("#codigo").val("");
@@ -123,7 +151,7 @@ $(document).ready(function(){
 	}
 });
 //Funcion para cambiar el color de los botones cuando el mouse esta encima
-function cambioColor(elemento){
+/*function cambioColor(elemento){
 	'use strict';
 	elemento.style.background = "#7BF085";
 }
@@ -131,4 +159,4 @@ function cambioColor(elemento){
 function colorOriginal(elemento){
 	'use strict';
 	elemento.style.background = "#09B917";
-}
+}*/
