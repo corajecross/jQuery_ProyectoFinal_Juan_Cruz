@@ -5,12 +5,15 @@ body{
 	font-family:Arial;
 }
 /*Estilo para los botones*/
-button{
-	background: #09B917;
-	color:rgba(255,255,255,1);
+.btnPpal{
 	width:198px;
 	height:50px;
 	border-radius:5px;
+}
+
+button{
+	background: #09B917;
+	color:rgba(255,255,255,1);
 }
 /*Estilo para la tabla donde se registran los estudiantes*/
 #tablaEstudiantes{

@@ -7,11 +7,11 @@ function imprimirEstudiantes(){
 	tabla += '<table id="tablaEstudiantes" align="center" border="1">';
 	tabla += '<thead><td colspan="5" align="center" class="encabezadoTabla">Listado De Estudiantes</td></thead>';
 	tabla += '<tr>';
-	tabla += '<td><b>Codigo</b></td>';
-	tabla += '<td><b>Nombre</b></td>';
-	tabla += '<td><b>Nota</b></td>';
-	tabla += '<td><b>Editar</b></td>';
-	tabla += '<td><b>Eliminar</b></td>';
+	tabla += '<td align="center"><b>Codigo</b></td>';
+	tabla += '<td align="center"><b>Nombre</b></td>';
+	tabla += '<td align="center"><b>Nota</b></td>';
+	tabla += '<td align="center"><b>Editar</b></td>';
+	tabla += '<td align="center"><b>Eliminar</b></td>';
 	tabla += '</tr>';
 	for(var i=0; i<localStorage.length; i++){
 		var clave = localStorage.key(i);
@@ -97,7 +97,7 @@ $(document).ready(function(){
 	});
 	//Funcion que identifica la nota menor que se activa al hacer click en el boton con id btnNotaMenor
 	$("#btnNotaMenor").click(function(){
-		var notaBaja = 0;
+		var notaBaja = 5;
 		var estudianteBaja;
 		if(localStorage.length == 0){
 			alert("No hay estudiantes registrados");
